@@ -100,20 +100,20 @@
 
 
 
-  <meta name="description" content="我们上一篇学完了元祖，这一篇马上进入列表的学习中，因为列表和元祖非常相似，我们趁热打铁，只要懂了元祖，列表也就很简单了">
+  <meta name="description" content="我们上一篇学完了元组，这一篇马上进入列表的学习中，因为列表和元组非常相似，我们趁热打铁，只要懂了元组，列表也就很简单了">
 <meta name="keywords" content="入门,教程,系列">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python3从零开始_06:列表">
 <meta property="og:url" content="https://damow.gitee.io/python3/python3从零开始-06-列表/index.html">
 <meta property="og:site_name" content="Damow &#39;Blog">
-<meta property="og:description" content="我们上一篇学完了元祖，这一篇马上进入列表的学习中，因为列表和元祖非常相似，我们趁热打铁，只要懂了元祖，列表也就很简单了">
+<meta property="og:description" content="我们上一篇学完了元组，这一篇马上进入列表的学习中，因为列表和元组非常相似，我们趁热打铁，只要懂了元组，列表也就很简单了">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://pls01y3cj.bkt.clouddn.com/python_logo.jpg">
-<meta property="og:updated_time" content="2019-02-20T04:36:38.618Z">
+<meta property="og:image" content="https://gitee.com/Damow/image/raw/master/python_log.png">
+<meta property="og:updated_time" content="2019-02-27T02:04:32.116Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python3从零开始_06:列表">
-<meta name="twitter:description" content="我们上一篇学完了元祖，这一篇马上进入列表的学习中，因为列表和元祖非常相似，我们趁热打铁，只要懂了元祖，列表也就很简单了">
-<meta name="twitter:image" content="http://pls01y3cj.bkt.clouddn.com/python_logo.jpg">
+<meta name="twitter:description" content="我们上一篇学完了元组，这一篇马上进入列表的学习中，因为列表和元组非常相似，我们趁热打铁，只要懂了元组，列表也就很简单了">
+<meta name="twitter:image" content="https://gitee.com/Damow/image/raw/master/python_log.png">
 
 
 
@@ -530,12 +530,24 @@
                 
               
 
-              <time title="创建时间：2019-02-20 10:38:48 / 修改时间：12:36:38" itemprop="dateCreated datePublished" datetime="2019-02-20T10:38:48+08:00">2019-02-20</time>
+              <time title="创建时间：2019-02-20 10:38:48" itemprop="dateCreated datePublished" datetime="2019-02-20T10:38:48+08:00">2019-02-20</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-27 10:04:32" itemprop="dateModified" datetime="2019-02-27T10:04:32+08:00">2019-02-27</time>
               
             
           </span>
@@ -608,8 +620,8 @@
           
           
             <div class="post-gallery-row">
-              <a class="post-gallery-img fancybox" href="http://pls01y3cj.bkt.clouddn.com/python_logo.jpg" rel="gallery_cjscl9nrc0000kstu2fbldola" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="http://pls01y3cj.bkt.clouddn.com/python_logo.jpg" itemprop="contentUrl">
+              <a class="post-gallery-img fancybox" href="https://gitee.com/Damow/image/raw/master/python_log.png" rel="gallery_cjscl9nrc0000kstu2fbldola" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
+                <img src="https://gitee.com/Damow/image/raw/master/python_log.png" itemprop="contentUrl">
               </a>
             
           
@@ -620,24 +632,24 @@
       
 
       
-        <p>我们上一篇学完了元祖，这一篇马上进入列表的学习中，因为列表和元祖非常相似，我们趁热打铁，只要懂了元祖，列表也就很简单了<br><a id="more"></a></p>
-<p>列表是属于可变数据结构，它与元祖很相似，唯一的区别就是，数据可变，其他的基本上都一样，操作也是，所以这一篇讲的会比较快</p>
-<h2 id="增"><a href="#增" class="headerlink" title="增"></a>增</h2><p>首先我们同样先学习创建列表，列表的创建和元祖一样，但是列表用[]括起来，而不是用()，这点需要大家留意<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">lis1 = [1,2,3]</span><br><span class="line">lis2 = [&quot;I&quot;,&quot;Love&quot;,&quot;Python&quot;]</span><br><span class="line">lis3 = [False,True]</span><br><span class="line">lis4 = [1,&quot;python&quot;,True,(20,30),[&apos;a&apos;,&apos;b&apos;]]</span><br><span class="line">lis5 = [&apos;a&apos;]</span><br><span class="line">print(&quot;lis1=&quot;,lis1)</span><br><span class="line">print(&quot;lis2=&quot;,lis2)</span><br><span class="line">print(&quot;lis3=&quot;,lis3)</span><br><span class="line">print(&quot;lis4=&quot;,lis4)</span><br><span class="line">print(&quot;lis5=&quot;,lis5)</span><br></pre></td></tr></table></figure></p>
-<p>创建的操作和元祖一模一样，只是括号变了，多个元素依然用逗号隔开，同样可以是多种类型的元素，也可以嵌套，如果元祖都懂，这个完全没难度了,在列表了，如果是由一个元素时，可以不再用逗号去强调，只要和平时使用的方法使用就可以了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lis1= [1, 2, 3]</span><br><span class="line">lis2= [&apos;I&apos;, &apos;Love&apos;, &apos;Python&apos;]</span><br><span class="line">lis3= [False, True]</span><br><span class="line">lis4= [1, &apos;python&apos;, True, (20, 30), [&apos;a&apos;, &apos;b&apos;]]</span><br><span class="line">lis5= [&apos;a&apos;]</span><br></pre></td></tr></table></figure></p>
+        <p>我们上一篇学完了元组，这一篇马上进入列表的学习中，因为列表和元组非常相似，我们趁热打铁，只要懂了元组，列表也就很简单了<br><a id="more"></a></p>
+<p>列表是属于可变数据结构，它与元组很相似，唯一的区别就是，数据可变，其他的基本上都一样，操作也是，所以这一篇讲的会比较快</p>
+<h2 id="增"><a href="#增" class="headerlink" title="增"></a>增</h2><p>首先我们同样先学习创建列表，列表的创建和元组一样，但是列表用[]括起来，而不是用()，这点需要大家留意<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">lis1 = [1,2,3]</span><br><span class="line">lis2 = [&quot;I&quot;,&quot;Love&quot;,&quot;Python&quot;]</span><br><span class="line">lis3 = [False,True]</span><br><span class="line">lis4 = [1,&quot;python&quot;,True,(20,30),[&apos;a&apos;,&apos;b&apos;]]</span><br><span class="line">lis5 = [&apos;a&apos;]</span><br><span class="line">print(&quot;lis1=&quot;,lis1)</span><br><span class="line">print(&quot;lis2=&quot;,lis2)</span><br><span class="line">print(&quot;lis3=&quot;,lis3)</span><br><span class="line">print(&quot;lis4=&quot;,lis4)</span><br><span class="line">print(&quot;lis5=&quot;,lis5)</span><br></pre></td></tr></table></figure></p>
+<p>创建的操作和元组一模一样，只是括号变了，多个元素依然用逗号隔开，同样可以是多种类型的元素，也可以嵌套，如果元组都懂，这个完全没难度了,在列表了，如果是由一个元素时，可以不再用逗号去强调，只要和平时使用的方法使用就可以了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lis1= [1, 2, 3]</span><br><span class="line">lis2= [&apos;I&apos;, &apos;Love&apos;, &apos;Python&apos;]</span><br><span class="line">lis3= [False, True]</span><br><span class="line">lis4= [1, &apos;python&apos;, True, (20, 30), [&apos;a&apos;, &apos;b&apos;]]</span><br><span class="line">lis5= [&apos;a&apos;]</span><br></pre></td></tr></table></figure></p>
 <p>输出也是一样，为了方便区分，同样用[]表示，省去了type()的时间。</p>
 <h2 id="删"><a href="#删" class="headerlink" title="删"></a>删</h2><p>删除也是一样，使用del可以将整个变量删掉，但是，列表时可变数据结构，那它就可以修改列表里的元素，这也就是意味着可以只针对某个元素做操作，比如删除列表里某个元素<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lis6 = [1,2,3]</span><br><span class="line">print(lis6)</span><br><span class="line">print(&apos;-----------------&apos;)</span><br><span class="line">del lis6</span><br><span class="line">print(lis6)</span><br></pre></td></tr></table></figure></p>
 <p>这里删除整个就不多说了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[1, 2, 3]</span><br><span class="line">-----------------</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;.\a.py&quot;, line 11, in &lt;module&gt;</span><br><span class="line">    print(lis6)</span><br><span class="line">NameError: name &apos;lis6&apos; is not defined</span><br></pre></td></tr></table></figure></p>
 <p>我们回顾下上一篇里的元素下标，每个元素都有一个下标号，从左往右是从0开始，从右往左是从-1开始，索引用[]，切片只需要在[]里加:，左边是开始的下标，右边是结束的下标减1，如果再加个:就表示步数，可以跳跃。</p>
 <p>好了，这些想起来就会容易很多，从下面开始，基本上就是这些操作了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">lis7 = [1,2,3,4,5,6,7,8]</span><br><span class="line">print(lis7)</span><br><span class="line">del lis7[2]</span><br><span class="line">print(lis7)</span><br><span class="line">print(&apos;-----------------&apos;)</span><br><span class="line"></span><br><span class="line">lis8 = [1,2,3,4,5,6,7,8]</span><br><span class="line">print(lis8)</span><br><span class="line">del lis8[2:5]</span><br><span class="line">print(lis8)</span><br><span class="line">print(&apos;-----------------&apos;)</span><br><span class="line"></span><br><span class="line">lis9 = [1,2,3,4,5,6,7,8]</span><br><span class="line">print(lis9)</span><br><span class="line">del lis9[::2]</span><br><span class="line">print(lis9)</span><br></pre></td></tr></table></figure></p>
-<p>可以看到lis7是通过索引删除指定下标的元素，lis8通过切片，而lis9还怎加的步数，这些操作是不是和元祖一样，所以元祖那一篇搞懂了，这就很简单了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[1, 2, 3, 4, 5, 6, 7, 8]</span><br><span class="line">[1, 2, 4, 5, 6, 7, 8]</span><br><span class="line">-----------------</span><br><span class="line">[1, 2, 3, 4, 5, 6, 7, 8]</span><br><span class="line">[1, 2, 6, 7, 8]</span><br><span class="line">-----------------</span><br><span class="line">[1, 2, 3, 4, 5, 6, 7, 8]</span><br><span class="line">[2, 4, 6, 8]</span><br></pre></td></tr></table></figure></p>
-<h2 id="查"><a href="#查" class="headerlink" title="查"></a>查</h2><p>查就通过下标索引，切片和，这些都是讲过的，只不过把元祖换成了列表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lis10 = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;,&apos;e&apos;,&apos;f&apos;,&apos;g&apos;,&apos;h&apos;,&apos;i&apos;,&apos;j&apos;,&apos;k&apos;,&apos;l&apos;]</span><br><span class="line">print(lis10)</span><br><span class="line">print(lis10[-7:-2])</span><br><span class="line">print(lis10[1:8:3])</span><br></pre></td></tr></table></figure></p>
+<p>可以看到lis7是通过索引删除指定下标的元素，lis8通过切片，而lis9还怎加的步数，这些操作是不是和元组一样，所以元组那一篇搞懂了，这就很简单了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[1, 2, 3, 4, 5, 6, 7, 8]</span><br><span class="line">[1, 2, 4, 5, 6, 7, 8]</span><br><span class="line">-----------------</span><br><span class="line">[1, 2, 3, 4, 5, 6, 7, 8]</span><br><span class="line">[1, 2, 6, 7, 8]</span><br><span class="line">-----------------</span><br><span class="line">[1, 2, 3, 4, 5, 6, 7, 8]</span><br><span class="line">[2, 4, 6, 8]</span><br></pre></td></tr></table></figure></p>
+<h2 id="查"><a href="#查" class="headerlink" title="查"></a>查</h2><p>查就通过下标索引，切片和，这些都是讲过的，只不过把元组换成了列表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lis10 = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;,&apos;e&apos;,&apos;f&apos;,&apos;g&apos;,&apos;h&apos;,&apos;i&apos;,&apos;j&apos;,&apos;k&apos;,&apos;l&apos;]</span><br><span class="line">print(lis10)</span><br><span class="line">print(lis10[-7:-2])</span><br><span class="line">print(lis10[1:8:3])</span><br></pre></td></tr></table></figure></p>
 <p>操作上基本都没什么难度了，再以前看来很难得现在变得很简单了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;, &apos;f&apos;, &apos;g&apos;, &apos;h&apos;, &apos;i&apos;, &apos;j&apos;, &apos;k&apos;, &apos;l&apos;]</span><br><span class="line">[&apos;f&apos;, &apos;g&apos;, &apos;h&apos;, &apos;i&apos;, &apos;j&apos;]</span><br><span class="line">[&apos;b&apos;, &apos;e&apos;, &apos;h&apos;]</span><br></pre></td></tr></table></figure></p>
 <p>这里就不再玩作死了…现在来说都不是作死了，都已经没挑战性了。有兴趣得话，大家可以自己去尝试下</p>
 <h2 id="改"><a href="#改" class="headerlink" title="改"></a>改</h2><p>因为列表是可变的，所以可以修改元素，而修改元素说白了就是用下标查找到该元素，然后从新赋值，就这么简单<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">lis11 = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;]</span><br><span class="line">print(&quot;lis11修改前：&quot;,lis11)</span><br><span class="line">lis11[1] = 1</span><br><span class="line">print(&quot;lis11修改后：&quot;,lis11)</span><br><span class="line"></span><br><span class="line">lis12 = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;,&apos;e&apos;,&apos;f&apos;]</span><br><span class="line">print(&quot;lis12修改前：&quot;,lis12)</span><br><span class="line">lis12[2:4] = &quot;hi&quot;,&quot;python&quot;</span><br><span class="line">print(&quot;lis12修改后：&quot;,lis12)</span><br><span class="line"></span><br><span class="line">lis13 = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;,&apos;e&apos;]</span><br><span class="line">print(&quot;lis13修改前：&quot;,lis13)</span><br><span class="line">lis13[::3] = 2,3</span><br><span class="line">print(&quot;lis13修改后：&quot;,lis13)</span><br></pre></td></tr></table></figure></p>
 <p>这里有一点需要注意得，就是你要修改多少元素就要赋值多少个元素，否则就是报错，这点大家要注意，一般很少范围性得修改，修改单个比较多。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">lis11修改前： [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;]</span><br><span class="line">lis11修改后： [&apos;a&apos;, 1, &apos;c&apos;, &apos;d&apos;]</span><br><span class="line">lis12修改前： [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;, &apos;f&apos;]</span><br><span class="line">lis12修改后： [&apos;a&apos;, &apos;b&apos;, &apos;hi&apos;, &apos;python&apos;, &apos;e&apos;, &apos;f&apos;]</span><br><span class="line">lis13修改前： [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;]</span><br><span class="line">lis13修改后： [2, &apos;b&apos;, &apos;c&apos;, 3, &apos;e&apos;]</span><br></pre></td></tr></table></figure></p>
-<h2 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h2><p>说到运算就想到了元祖的+，*，in，同样在列表也是一样，而且效果也是一样的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lis14 = [1,2]</span><br><span class="line">lis15 = [4,5]</span><br><span class="line">lis16 = lis14+lis15</span><br><span class="line">lis17 = lis14*3</span><br><span class="line">print(lis16)</span><br><span class="line">print(lis17)</span><br><span class="line">print(4 in lis15)</span><br></pre></td></tr></table></figure></p>
+<h2 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h2><p>说到运算就想到了元组的+，*，in，同样在列表也是一样，而且效果也是一样的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lis14 = [1,2]</span><br><span class="line">lis15 = [4,5]</span><br><span class="line">lis16 = lis14+lis15</span><br><span class="line">lis17 = lis14*3</span><br><span class="line">print(lis16)</span><br><span class="line">print(lis17)</span><br><span class="line">print(4 in lis15)</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[1, 2, 4, 5]</span><br><span class="line">[1, 2, 1, 2, 1, 2]</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>最后说说列表的方法，因为是可变的数据结构，所以方法会比元祖多，而且都很实用</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>最后说说列表的方法，因为是可变的数据结构，所以方法会比元组多，而且都很实用</p>
 <h3 id="count"><a href="#count" class="headerlink" title="count()"></a>count()</h3><p>统计某个元素在列表中出现的次数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lis18 = [1,2,3,1,1,2,4,5]</span><br><span class="line">print(lis18.count(1))</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
 <h3 id="index"><a href="#index" class="headerlink" title="index()"></a>index()</h3><p>从列表中找出某个值第一个匹配项的索引位置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lis18 = [1,2,3,1,1,2,4,5]</span><br><span class="line">print(lis18.index(2))</span><br></pre></td></tr></table></figure></p>
@@ -768,8 +780,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/python3/python3从零开始-05-元祖/" rel="next" title="python3从零开始_05:元祖">
-                <i class="fa fa-chevron-left"></i> python3从零开始_05:元祖
+              <a href="/python3/python3从零开始-05-元组/" rel="next" title="python3从零开始_05:元组">
+                <i class="fa fa-chevron-left"></i> python3从零开始_05:元组
               </a>
             
           </div>
