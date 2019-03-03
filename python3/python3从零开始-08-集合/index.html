@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="ZsNCkutcDAZrF7Ig0V7Sx_YqtmAeB1G_F2eYKSbEqnc">
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="KHUpDPhA47">
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon_32.ico?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.ico?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="这篇将介绍基本数据结构中的最后一个——集合(set)，集合是一个无序的不重复元素序列。集合的使用是比较简单的，再加上前面学习了元组、列表、字典后，集合变得更加简单了。">
+<meta name="keywords" content="入门,教程,系列">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python3从零开始_08:集合">
+<meta property="og:url" content="https://damow.gitee.io/python3/python3从零开始-08-集合/index.html">
+<meta property="og:site_name" content="Damow &#39;Blog">
+<meta property="og:description" content="这篇将介绍基本数据结构中的最后一个——集合(set)，集合是一个无序的不重复元素序列。集合的使用是比较简单的，再加上前面学习了元组、列表、字典后，集合变得更加简单了。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://gitee.com/Damow/image/raw/master/python_log.png">
+<meta property="og:updated_time" content="2019-03-03T12:04:11.874Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python3从零开始_08:集合">
+<meta name="twitter:description" content="这篇将介绍基本数据结构中的最后一个——集合(set)，集合是一个无序的不重复元素序列。集合的使用是比较简单的，再加上前面学习了元组、列表、字典后，集合变得更加简单了。">
+<meta name="twitter:image" content="https://gitee.com/Damow/image/raw/master/python_log.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://damow.gitee.io/python3/python3从零开始-08-集合/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>python3从零开始_08:集合 | Damow 'Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><!--  <div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Damow 'Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+ -->
+
+
+  
+
+<div class="site-brand-wrapper">
+ <div class="site-meta">
+   
+
+   <div class="custom-logo-site-title">
+     <a href="/" class="brand" rel="start">
+       <span class="logo-line-before"><i></i></span>
+       <span class="site-title">Damow 'Blog</span>
+       <span class="logo-line-after"><i></i></span>
+     </a>
+   </div>
+   
+   
+ </div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+</div>
+    </div></header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://damow.gitee.io/python3/python3从零开始-08-集合/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Damow">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Damow 'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python3从零开始_08:集合
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-03 11:27:55 / 修改时间：20:04:11" itemprop="dateCreated datePublished" datetime="2019-03-03T11:27:55+08:00">2019-03-03</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/python3/" itemprop="url" rel="index"><span itemprop="name">python3</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/python3/python3从零开始-08-集合/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/python3/python3从零开始-08-集合/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+        <div class="post-gallery" itemscope="" itemtype="http://schema.org/ImageGallery">
+          
+          
+            <div class="post-gallery-row">
+              <a class="post-gallery-img fancybox" href="https://gitee.com/Damow/image/raw/master/python_log.png" rel="gallery_cjssmnvaw0000l0tu0npsyuj6" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
+                <img src="https://gitee.com/Damow/image/raw/master/python_log.png" itemprop="contentUrl">
+              </a>
+            
+          
+
+          
+          </div>
+        </div>
+      
+
+      
+        <p>这篇将介绍基本数据结构中的最后一个——<strong>集合(set)</strong>，集合是一个无序的不重复元素序列。集合的使用是比较简单的，再加上前面学习了元组、列表、字典后，集合变得更加简单了。<br><a id="more"></a><br>从集合是一个无序的不重复元素序列这句话中可以看出，集合的特性，第一点是集合是无序的，和字典一样。第二点是不重复，也就是说里面的元素不会重复，都是唯一了。其实在平时集合用的不会像其他数据类型一样使用的那么频繁，主要是在一些场合下做去重的时候会用的比较多。</p>
+<h2 id="创建集合"><a href="#创建集合" class="headerlink" title="创建集合"></a>创建集合</h2><p>集合的创建和字典很像，同样是用{}表示，不同的是，集合不存在键值对，就是普通的值，依然用逗号隔开。元素类型必须是单一的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set1 = &#123;1,&quot;hello&quot;,2,&quot;hello&quot;,1&#125;</span><br><span class="line">print(set1)</span><br></pre></td></tr></table></figure></p>
+<p>从输出可以看到，集合自动帮我们去掉了重复的元素，这也是集合最大的作用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;1, 2, &apos;hello&apos;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当我们需要创建一个空集合的时候，就不能直接使用{}来创建，因为{}是用来创建空字典的，我们应该使用<strong>set()</strong>方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set2 = set()</span><br><span class="line">print(&quot;set2 = &quot;,set)</span><br></pre></td></tr></table></figure></p>
+<p>输出的结果是set()，因为是空的，如果是用{}表示的话，就表示空字典了，所以空的集合用set()表示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set2 =  set()</span><br></pre></td></tr></table></figure></p>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>集合是无序的，所以集合不支持索引和切片，也就是说不能找到指定的元素位置，所以只能删除整个集合。但是，删除某个元素还是可以的，用<strong>remove()</strong>方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set4 = &#123;1,2,3,1,4,6,3,4&#125;</span><br><span class="line">print(&quot;set4 = &quot;,set4)</span><br><span class="line">del set4</span><br><span class="line">print(set4)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set4 =  &#123;1, 2, 3, 4, 6&#125;</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;C:\Users\as338\Desktop\a.py&quot;, line 4, in &lt;module&gt;</span><br><span class="line">    print(set4)</span><br><span class="line">NameError: name &apos;set4&apos; is not defined</span><br></pre></td></tr></table></figure>
+<p>用remove()删除集合的某个元素，要删除某个元素的前提条件是，你必须知道集合里是否有该元素。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set5 = &#123;&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;a&quot;,&quot;d&quot;&#125;</span><br><span class="line">print(&quot;set5 = &quot;,set5)</span><br><span class="line">set5.remove(&quot;b&quot;)</span><br><span class="line">print(&quot;set5 = &quot;,set5)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set5 =  &#123;&apos;d&apos;, &apos;b&apos;, &apos;c&apos;, &apos;a&apos;&#125;</span><br><span class="line">set5 =  &#123;&apos;d&apos;, &apos;c&apos;, &apos;a&apos;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h2><p>当你看到这你可能就疑惑了，怎么前面讲了创建和删除，就到运算了，添加，查询，修改呢？我只能说，集合不存在这些快捷操作，的确是有这些操作，但是它们都是用方法实现的，所以这些我都放到方法里讲，运算才是集合的核心部分。</p>
+<h3 id="什么是交集、并集、差集、对称差集"><a href="#什么是交集、并集、差集、对称差集" class="headerlink" title="什么是交集、并集、差集、对称差集"></a>什么是交集、并集、差集、对称差集</h3><p>这些东西很好理解，就是又没有相同的部分，不相同的部分之类的，下面是百度百科的介绍</p>
+<blockquote>
+<p>交集：集合论中，设A，B是两个集合，由所有属于集合A且属于集合B的元素所组成的集合，叫做集合A与集合B的交集<br><br>并集：给定两个集合A，B，把他们所有的元素合并在一起组成的集合，叫做集合A与集合B的并集<br><br>差集：设A，B是两个集合，由所有属于A且不属于B的元素组成的集合，叫做集合A减集合B(或集合A与集合B之差)，类似地，对于集合A,B，我们把集合{x/x∈A,且x￠B}叫做A与B的差集<br><br>对称差集：集合A与集合B中所有不属于A∩B的元素的集合</p>
+</blockquote>
+<p>是不是看的一头雾水，是就对了，因为我也看的很难受，把这些用通俗的话来说就是下面的意思<br>. 交集：两个集合中共同的元素组成的集合<br>. 并集：两个集合所有的并去掉重复的元素组成的集合<br>. 差集：在集合1不在集合2的元素集合<br>. 对称差集：两个集合中除去相同集合的元素组成的集合<br>就是这么简单的意思，就是有没有共同元素的问题</p>
+<h3 id="交集"><a href="#交集" class="headerlink" title="交集"></a>交集</h3><p>交集用&amp;符号做运算，得到的结果是一个新的集合。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set6 = &#123;1,2,3,4,5&#125;</span><br><span class="line">set7 = &#123;1,3,5,7,9&#125;</span><br><span class="line">print(&quot;set6 = &quot;,set6)</span><br><span class="line">print(&quot;set7 = &quot;,set7)</span><br><span class="line">print(&quot;set6和set7的交集是：&quot;,set6&amp;set7)</span><br></pre></td></tr></table></figure></p>
+<p>两个集合通过做交集运算后，得到两个集合共同拥有的元素的集合<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set6 =  &#123;1, 2, 3, 4, 5&#125;</span><br><span class="line">set7 =  &#123;1, 3, 5, 7, 9&#125;</span><br><span class="line">set6和set7的交集是： &#123;1, 3, 5&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="并集"><a href="#并集" class="headerlink" title="并集"></a>并集</h3><p>并用|符号做运算，得到的结果是一个新的集合。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set6 = &#123;1,2,3,4,5&#125;</span><br><span class="line">set7 = &#123;1,3,5,7,9&#125;</span><br><span class="line">print(&quot;set6 = &quot;,set6)</span><br><span class="line">print(&quot;set7 = &quot;,set7)</span><br><span class="line">print(&quot;set6和set7的并集是：&quot;,set6|set7)</span><br></pre></td></tr></table></figure></p>
+<p>两个集合通过做并集运算后，得到两个集合所有的且不重复的集合<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set6 =  &#123;1, 2, 3, 4, 5&#125;</span><br><span class="line">set7 =  &#123;1, 3, 5, 7, 9&#125;</span><br><span class="line">set6和set7的并集是： &#123;1, 2, 3, 4, 5, 7, 9&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="差集"><a href="#差集" class="headerlink" title="差集"></a>差集</h3><p>差集用-符号做运算，得到的结果是一个新的集合。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set6 = &#123;1,2,3,4,5&#125;</span><br><span class="line">set7 = &#123;1,3,5,7,9&#125;</span><br><span class="line">print(&quot;set6 = &quot;,set6)</span><br><span class="line">print(&quot;set7 = &quot;,set7)</span><br><span class="line">print(&quot;set6和set7的差集是：&quot;,set6-set7)</span><br></pre></td></tr></table></figure></p>
+<p>两个集合通过做差集运算后，得到在集合set6有的元素，并且在集合set7没有的元素的集合。如果反过来set7-set6结果就是在集合set7有的元素，并且在集合set6没有的元素的集合。（9和7）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set6 =  &#123;1, 2, 3, 4, 5&#125;</span><br><span class="line">set7 =  &#123;1, 3, 5, 7, 9&#125;</span><br><span class="line">set6和set7的差集是： &#123;2, 4&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="对称差集"><a href="#对称差集" class="headerlink" title="对称差集"></a>对称差集</h3><p>对称差集用^符号做运算，得到的结果是一个新的集合。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set6 = &#123;1,2,3,4,5&#125;</span><br><span class="line">set7 = &#123;1,3,5,7,9&#125;</span><br><span class="line">print(&quot;set6 = &quot;,set6)</span><br><span class="line">print(&quot;set7 = &quot;,set7)</span><br><span class="line">print(&quot;set6和set7的对称差集是：&quot;,set6^set7)</span><br></pre></td></tr></table></figure></p>
+<p>两个集合通过做对称差集运算后，得到两个集合中除去相同元素，剩下的元素组成的集合<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set6 =  &#123;1, 2, 3, 4, 5&#125;</span><br><span class="line">set7 =  &#123;1, 3, 5, 7, 9&#125;</span><br><span class="line">set6和set7的对称差集是： &#123;2, 4, 7, 9&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>集合因为添加，删除，查询都是靠方法实现的，所以方法会比较多。操作都会很简单</p>
+<h3 id="add"><a href="#add" class="headerlink" title="add()"></a>add()</h3><p>为集合添加元素，如果添加的元素已存在的话，原集合不会发生改变。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set8 = &#123;1,2,3&#125;</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br><span class="line">set8.add(4)</span><br><span class="line">print(&quot;添加元素4后的set8 = &quot;,set8)</span><br><span class="line">set8.add(2)</span><br><span class="line">print(&quot;添加元素2后的set8 = &quot;,set8)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set8 =  &#123;1, 2, 3&#125;</span><br><span class="line">添加元素4后的set8 =  &#123;1, 2, 3, 4&#125;</span><br><span class="line">添加元素2后的set8 =  &#123;1, 2, 3, 4&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="update"><a href="#update" class="headerlink" title="update()"></a>update()</h3><p>给集合添加元素,update和add的区别就是，add只能添加1个元素，添加的是什么就是什么，而update可以添加多个，可以是列表，元组，字典等，如果添加字符串类型，添加进去后会被拆成单个的字符串<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set8 = &#123;1,2&#125;</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br><span class="line">set8.update(&quot;abcd&quot;)</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br><span class="line">set8.update([&quot;asd&quot;],[&quot;zxc&quot;])</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set8 =  &#123;1, 2&#125;</span><br><span class="line">set8 =  &#123;1, 2, &apos;d&apos;, &apos;b&apos;, &apos;c&apos;, &apos;a&apos;&#125;</span><br><span class="line">set8 =  &#123;1, 2, &apos;asd&apos;, &apos;zxc&apos;, &apos;d&apos;, &apos;b&apos;, &apos;c&apos;, &apos;a&apos;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="clear"><a href="#clear" class="headerlink" title="clear()"></a>clear()</h3><p>移除集合中的所有元素<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set8 = &#123;1,2,3&#125;</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br><span class="line">set8.clear()</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set8 =  &#123;1, 2, 3&#125;</span><br><span class="line">set8 =  set()</span><br></pre></td></tr></table></figure>
+<h3 id="remove"><a href="#remove" class="headerlink" title="remove()"></a>remove()</h3><p>移除指定元素,如果元素不存在，则会发生错误。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set8 = &#123;1,2,3&#125;</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br><span class="line">set8.remove(2)</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set8 =  &#123;1, 2, 3&#125;</span><br><span class="line">set8 =  &#123;1, 3&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="pop"><a href="#pop" class="headerlink" title="pop()"></a>pop()</h3><p>删除的是集合中的第一个元素，如果集合中没有元素就会引发KeyError错误<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">set8 = &#123;1,2&#125;</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br><span class="line">set8.pop()</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br><span class="line">set8.pop()</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br><span class="line">set8.pop()</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">set8 =  &#123;1, 2&#125;</span><br><span class="line">set8 =  &#123;2&#125;</span><br><span class="line">set8 =  set()</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;C:\Users\as338\Desktop\a.py&quot;, line 7, in &lt;module&gt;</span><br><span class="line">    set8.pop()</span><br><span class="line">KeyError: &apos;pop from an empty set&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="discard"><a href="#discard" class="headerlink" title="discard()"></a>discard()</h3><p>删除集合中指定的元素,和remove的区别在于，discard先会在集合里查找是否有该元素，如果有将其删除，如果没有什么都不会发生<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set8 = &#123;1,2&#125;</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br><span class="line">set8.discard(1)</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br><span class="line">set8.discard(3)</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set8 =  &#123;1, 2&#125;</span><br><span class="line">set8 =  &#123;2&#125;</span><br><span class="line">set8 =  &#123;2&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="copy"><a href="#copy" class="headerlink" title="copy()"></a>copy()</h3><p>拷贝一个集合，浅拷贝<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set8 = &#123;1,2&#125;</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br><span class="line">set9 = set8.copy()</span><br><span class="line">print(&quot;set9 = &quot;,set9)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set8 =  &#123;1, 2&#125;</span><br><span class="line">set9 =  &#123;1, 2&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="intersection"><a href="#intersection" class="headerlink" title="intersection()"></a>intersection()</h3><p>返回两个或更多集合的交集<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">set8 = &#123;1,2,3,4,5&#125;</span><br><span class="line">set9 = &#123;1,3,5,7,9&#125;</span><br><span class="line">set10 = &#123;1,2,4,5,7&#125;</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br><span class="line">print(&quot;set9 = &quot;,set9)</span><br><span class="line">print(&quot;set10 = &quot;,set10)</span><br><span class="line">a = set8.intersection(set9,set10)</span><br><span class="line">print(&quot;a = &quot;,a)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set8 =  &#123;1, 2, 3, 4, 5&#125;</span><br><span class="line">set9 =  &#123;1, 3, 5, 7, 9&#125;</span><br><span class="line">set10 =  &#123;1, 2, 4, 5, 7&#125;</span><br><span class="line">a =  &#123;1, 5&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="intersection-update"><a href="#intersection-update" class="headerlink" title="intersection_update()"></a>intersection_update()</h3><p>获取两个或更多集合的交集，并在原集合中删除非交集元素。intersection_update和intersection区别， intersection是返回一个新的集合，而intersection_update是在原始的集合上移除非交集的元素。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">set8 = &#123;1,2,3,4,5&#125;</span><br><span class="line">set9 = &#123;1,3,5,7,9&#125;</span><br><span class="line">set10 = &#123;1,2,4,5,7&#125;</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br><span class="line">print(&quot;set9 = &quot;,set9)</span><br><span class="line">print(&quot;set10 = &quot;,set10)</span><br><span class="line">set8.intersection_update(set9,set10)</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set8 =  &#123;1, 2, 3, 4, 5&#125;</span><br><span class="line">set9 =  &#123;1, 3, 5, 7, 9&#125;</span><br><span class="line">set10 =  &#123;1, 2, 4, 5, 7&#125;</span><br><span class="line">set8 =  &#123;1, 5&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="union"><a href="#union" class="headerlink" title="union()"></a>union()</h3><p>返回两个或更多集合的并集且不重复<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">set8 = &#123;1,2,3,4,5&#125;</span><br><span class="line">set9 = &#123;1,3,5,7,9&#125;</span><br><span class="line">set10 = &#123;1,2,4,5,7&#125;</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br><span class="line">print(&quot;set9 = &quot;,set9)</span><br><span class="line">print(&quot;set10 = &quot;,set10)</span><br><span class="line">a = set8.union(set9,set10)</span><br><span class="line">print(&quot;a = &quot;,a)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set8 =  &#123;1, 2, 3, 4, 5&#125;</span><br><span class="line">set9 =  &#123;1, 3, 5, 7, 9&#125;</span><br><span class="line">set10 =  &#123;1, 2, 4, 5, 7&#125;</span><br><span class="line">a =  &#123;1, 2, 3, 4, 5, 7, 9&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="difference"><a href="#difference" class="headerlink" title="difference()"></a>difference()</h3><p>返回两个集合的差集<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set8 = &#123;1,2,3,4,5&#125;</span><br><span class="line">set9 = &#123;1,3,5,7,9&#125;</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br><span class="line">print(&quot;set9 = &quot;,set9)</span><br><span class="line">a = set8.difference(set9)</span><br><span class="line">print(&quot;a = &quot;,a)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set8 =  &#123;1, 2, 3, 4, 5&#125;</span><br><span class="line">set9 =  &#123;1, 3, 5, 7, 9&#125;</span><br><span class="line">a =  &#123;2, 4&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="difference-update"><a href="#difference-update" class="headerlink" title="difference_update()"></a>difference_update()</h3><p>获取两个集合的差集，并在原集合中删除非差集元素。difference_update和difference的区别在于difference返回两个集合的差集，而difference_update是在原来的集合中移除非差集元素<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set8 = &#123;1,2,3,4,5&#125;</span><br><span class="line">set9 = &#123;1,3,5,7,9&#125;</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br><span class="line">print(&quot;set9 = &quot;,set9)</span><br><span class="line">set8.difference_update(set9)</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set8 =  &#123;1, 2, 3, 4, 5&#125;</span><br><span class="line">set9 =  &#123;1, 3, 5, 7, 9&#125;</span><br><span class="line">set8 =  &#123;2, 4&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="symmetric-difference"><a href="#symmetric-difference" class="headerlink" title="symmetric_difference()"></a>symmetric_difference()</h3><p>返回两个集合的对称差集。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set8 = &#123;1,2,3,4,5&#125;</span><br><span class="line">set9 = &#123;1,3,5,7,9&#125;</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br><span class="line">print(&quot;set9 = &quot;,set9)</span><br><span class="line">a = set8.symmetric_difference(set9)</span><br><span class="line">print(&quot;a = &quot;,a)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set8 =  &#123;1, 2, 3, 4, 5&#125;</span><br><span class="line">set9 =  &#123;1, 3, 5, 7, 9&#125;</span><br><span class="line">a =  &#123;2, 4, 7, 9&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="symmetric-difference-update"><a href="#symmetric-difference-update" class="headerlink" title="symmetric_difference_update()"></a>symmetric_difference_update()</h3><p>获取两个集合的对称差集，并在原集合中删除对称非差集元素。symmetric_difference_update和symmetric_difference的区别在于symmetric_difference返回两个集合的对称差集，而symmetric_difference_update是在原来的集合中移除非对称差集元素<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set8 = &#123;1,2,3,4,5&#125;</span><br><span class="line">set9 = &#123;1,3,5,7,9&#125;</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br><span class="line">print(&quot;set9 = &quot;,set9)</span><br><span class="line">set8.symmetric_difference_update(set9)</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set8 =  &#123;1, 2, 3, 4, 5&#125;</span><br><span class="line">set9 =  &#123;1, 3, 5, 7, 9&#125;</span><br><span class="line">set8 =  &#123;2, 4, 7, 9&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="isdisjoint"><a href="#isdisjoint" class="headerlink" title="isdisjoint()"></a>isdisjoint()</h3><p>判断两个集合是否包含相同的元素，如果没有返回 True，否则返回 False。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set8 = &#123;1,2,3,4,5&#125;</span><br><span class="line">set9 = &#123;1,3,5,7,9&#125;</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br><span class="line">print(&quot;set9 = &quot;,set9)</span><br><span class="line">a = set8.isdisjoint(set9)</span><br><span class="line">print(&quot;a = &quot;,a)</span><br></pre></td></tr></table></figure></p>
+<p>注意如果没有返回的是True，否则返回的False。这个设计是个谜<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set8 =  &#123;1, 2, 3, 4, 5&#125;</span><br><span class="line">set9 =  &#123;1, 3, 5, 7, 9&#125;</span><br><span class="line">a =  False</span><br></pre></td></tr></table></figure></p>
+<h3 id="issubset"><a href="#issubset" class="headerlink" title="issubset()"></a>issubset()</h3><p>判断集合的所有元素是否都包含在指定集合中，如果是则返回 True，否则返回 False。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">set8 = &#123;1,2,3,4,5&#125;</span><br><span class="line">set9 = &#123;1,3,5,7,9&#125;</span><br><span class="line">set10 = &#123;1,3,5&#125;</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br><span class="line">print(&quot;set9 = &quot;,set9)</span><br><span class="line">print(&quot;set10 = &quot;,set10)</span><br><span class="line">a = set8.issubset(set9)</span><br><span class="line">b = set10.issubset(set8)</span><br><span class="line">print(&quot;a = &quot;,a)</span><br><span class="line">print(&quot;b = &quot;,b)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set8 =  &#123;1, 2, 3, 4, 5&#125;</span><br><span class="line">set9 =  &#123;1, 3, 5, 7, 9&#125;</span><br><span class="line">set10 =  &#123;1, 3, 5&#125;</span><br><span class="line">a =  False</span><br><span class="line">b =  True</span><br></pre></td></tr></table></figure>
+<h3 id="issuperset"><a href="#issuperset" class="headerlink" title="issuperset()"></a>issuperset()</h3><p>判断指定集合的所有元素是否都包含在原始的集合中，如果是则返回 True，否则返回 False。issuperset和issubset的区别在于谁是谁的子集，issuperset判断自身是否是完全包含在括号里，而issuperset正好相反，判断括号里的是否完全包含自身<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">set8 = &#123;1,2,3,4,5&#125;</span><br><span class="line">set9 = &#123;1,3,5,7,9&#125;</span><br><span class="line">set10 = &#123;1,3,5&#125;</span><br><span class="line">print(&quot;set8 = &quot;,set8)</span><br><span class="line">print(&quot;set9 = &quot;,set9)</span><br><span class="line">print(&quot;set10 = &quot;,set10)</span><br><span class="line">a = set8.issuperset(set9)</span><br><span class="line">b = set8.issuperset(set10)</span><br><span class="line">print(&quot;a = &quot;,a)</span><br><span class="line">print(&quot;b = &quot;,b)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set8 =  &#123;1, 2, 3, 4, 5&#125;</span><br><span class="line">set9 =  &#123;1, 3, 5, 7, 9&#125;</span><br><span class="line">set10 =  &#123;1, 3, 5&#125;</span><br><span class="line">a =  False</span><br><span class="line">b =  True</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果您想支持作者就请打赏下作者~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Damow 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Damow 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Damow</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://damow.gitee.io/python3/python3从零开始-08-集合/" title="python3从零开始_08:集合">https://damow.gitee.io/python3/python3从零开始-08-集合/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/入门/" rel="tag"><i class="fa fa-tag"></i> 入门</a>
+          
+            <a href="/tags/教程/" rel="tag"><i class="fa fa-tag"></i> 教程</a>
+          
+            <a href="/tags/系列/" rel="tag"><i class="fa fa-tag"></i> 系列</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/python3/python3从零开始-07-字典/" rel="next" title="python3从零开始_07:字典">
+                <i class="fa fa-chevron-left"></i> python3从零开始_07:字典
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Damow">
+            
+              <p class="site-author-name" itemprop="name">Damow</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/d-amow" title="GitHub &rarr; https://github.com/d-amow" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:z_sheng123@163.com" title="E-Mail &rarr; mailto:z_sheng123@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="/787731520" title="QQ &rarr; 787731520"><i class="fa fa-fw fa-qq"></i>QQ</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建集合"><span class="nav-number">1.</span> <span class="nav-text">创建集合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除"><span class="nav-number">2.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算"><span class="nav-number">3.</span> <span class="nav-text">运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是交集、并集、差集、对称差集"><span class="nav-number">3.1.</span> <span class="nav-text">什么是交集、并集、差集、对称差集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交集"><span class="nav-number">3.2.</span> <span class="nav-text">交集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并集"><span class="nav-number">3.3.</span> <span class="nav-text">并集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#差集"><span class="nav-number">3.4.</span> <span class="nav-text">差集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对称差集"><span class="nav-number">3.5.</span> <span class="nav-text">对称差集</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法"><span class="nav-number">4.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#add"><span class="nav-number">4.1.</span> <span class="nav-text">add()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#update"><span class="nav-number">4.2.</span> <span class="nav-text">update()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clear"><span class="nav-number">4.3.</span> <span class="nav-text">clear()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#remove"><span class="nav-number">4.4.</span> <span class="nav-text">remove()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pop"><span class="nav-number">4.5.</span> <span class="nav-text">pop()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#discard"><span class="nav-number">4.6.</span> <span class="nav-text">discard()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#copy"><span class="nav-number">4.7.</span> <span class="nav-text">copy()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#intersection"><span class="nav-number">4.8.</span> <span class="nav-text">intersection()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#intersection-update"><span class="nav-number">4.9.</span> <span class="nav-text">intersection_update()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#union"><span class="nav-number">4.10.</span> <span class="nav-text">union()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#difference"><span class="nav-number">4.11.</span> <span class="nav-text">difference()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#difference-update"><span class="nav-number">4.12.</span> <span class="nav-text">difference_update()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#symmetric-difference"><span class="nav-number">4.13.</span> <span class="nav-text">symmetric_difference()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#symmetric-difference-update"><span class="nav-number">4.14.</span> <span class="nav-text">symmetric_difference_update()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#isdisjoint"><span class="nav-number">4.15.</span> <span class="nav-text">isdisjoint()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#issubset"><span class="nav-number">4.16.</span> <span class="nav-text">issubset()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#issuperset"><span class="nav-number">4.17.</span> <span class="nav-text">issuperset()</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Damow</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'xJxPCF53YwtJIE6TbwtsqLhP-9Nh9j0Va',
+    appKey: 's6JarCEShzvdx7wOgdg72it1',
+    placeholder: '欢迎给我评论留言',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+  <!--  -->
+</body>
+</html>
