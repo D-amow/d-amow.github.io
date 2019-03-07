@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://damow.gitee.io/python3/python3%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B-09-%E8%A1%A5%E5%85%85%E4%B8%8E%E6%8F%90%E9%AB%98/</loc>
+    <lastmod>2019-03-07</lastmod>
+  </url>  <url>
+    <loc>https://damow.gitee.io/python3/python3%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B/</loc>
+    <lastmod>2019-03-04</lastmod>
+  </url>  <url>
     <loc>https://damow.gitee.io/python3/python3%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B-08-%E9%9B%86%E5%90%88/</loc>
     <lastmod>2019-03-03</lastmod>
   </url>  <url>
@@ -23,9 +29,6 @@
     <lastmod>2019-02-28</lastmod>
   </url>  <url>
     <loc>https://damow.gitee.io/python3/python3%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B-02-python%E5%AE%89%E8%A3%85/</loc>
-    <lastmod>2019-02-27</lastmod>
-  </url>  <url>
-    <loc>https://damow.gitee.io/python3/python3%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B/</loc>
     <lastmod>2019-02-27</lastmod>
   </url>
 </urlset>
