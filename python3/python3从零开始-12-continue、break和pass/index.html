@@ -100,22 +100,27 @@
 
 
 
-  <meta name="keywords" content="技术,分享,心得">
+  <meta name="description" content="前面两篇我们学习了条件控制和循环控制，while和for使用的时候还有2种中途控制的关键字，它们可以使while和for中途退出，跳过某个循环次数。">
+<meta name="keywords" content="入门,教程,系列">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python3从零开始_12:continue、break和pass">
-<meta property="og:url" content="https://damow.gitee.io/uncategorized/python3从零开始-12-continue、break和pass/index.html">
+<meta property="og:url" content="https://damow.gitee.io/python3/python3从零开始-12-continue、break和pass/index.html">
 <meta property="og:site_name" content="Damow &#39;Blog">
+<meta property="og:description" content="前面两篇我们学习了条件控制和循环控制，while和for使用的时候还有2种中途控制的关键字，它们可以使while和for中途退出，跳过某个循环次数。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-30T05:11:24.296Z">
+<meta property="og:image" content="https://gitee.com/Damow/image/raw/master/python_log.png">
+<meta property="og:updated_time" content="2019-03-31T08:43:30.520Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python3从零开始_12:continue、break和pass">
+<meta name="twitter:description" content="前面两篇我们学习了条件控制和循环控制，while和for使用的时候还有2种中途控制的关键字，它们可以使while和for中途退出，跳过某个循环次数。">
+<meta name="twitter:image" content="https://gitee.com/Damow/image/raw/master/python_log.png">
 
 
 
 
 
 
-  <link rel="canonical" href="https://damow.gitee.io/uncategorized/python3从零开始-12-continue、break和pass/">
+  <link rel="canonical" href="https://damow.gitee.io/python3/python3从零开始-12-continue、break和pass/">
 
 
 
@@ -482,7 +487,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://damow.gitee.io/uncategorized/python3从零开始-12-continue、break和pass/">
+    <link itemprop="mainEntityOfPage" href="https://damow.gitee.io/python3/python3从零开始-12-continue、break和pass/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Damow">
@@ -529,8 +534,42 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-31 16:43:30" itemprop="dateModified" datetime="2019-03-31T16:43:30+08:00">2019-03-31</time>
+              
+            
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/python3/" itemprop="url" rel="index"><span itemprop="name">python3</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -543,8 +582,8 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
             
-                <a href="/uncategorized/python3从零开始-12-continue、break和pass/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/uncategorized/python3从零开始-12-continue、break和pass/" itemprop="commentCount"></span>
+                <a href="/python3/python3从零开始-12-continue、break和pass/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/python3/python3从零开始-12-continue、break和pass/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -577,9 +616,33 @@
 
       
       
+        <div class="post-gallery" itemscope="" itemtype="http://schema.org/ImageGallery">
+          
+          
+            <div class="post-gallery-row">
+              <a class="post-gallery-img fancybox" href="https://gitee.com/Damow/image/raw/master/python_log.png" rel="gallery_cjtwoib7j0008jgtuinmsc4v1" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
+                <img src="https://gitee.com/Damow/image/raw/master/python_log.png" itemprop="contentUrl">
+              </a>
+            
+          
+
+          
+          </div>
+        </div>
+      
 
       
-        <a id="more"></a>
+        <p>前面两篇我们学习了条件控制和循环控制，while和for使用的时候还有2种中途控制的关键字，它们可以使while和for中途退出，跳过某个循环次数。<br><a id="more"></a></p>
+<h2 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h2><p>continue可以使用在循环语句里，可以跳过本次循环，直接进入下一次循环，我们通过案例来说明，我们做一个统计200以内的能被9整除的数，打印出该数和统计的数量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">lis=[]</span><br><span class="line">for num in range(1,200):</span><br><span class="line">    if num%9==0:</span><br><span class="line">        lis.append(num)</span><br><span class="line">    else:</span><br><span class="line">        continue</span><br><span class="line">    print(num,&apos;能被9整除&apos;)</span><br><span class="line">print(&apos;200以内能被9整除数总共有&apos;,len(lis))</span><br></pre></td></tr></table></figure></p>
+<p>能被9整除，我们可以用求余的方法来判断，余数为0说明就是能被整除的。这时个简单的for嵌套if，最常见的一种嵌套模式，if判断某数能否被9整除，能就将该数添加进列表里，否则就跳过本次循环。从结果可以看到，当执行了continue后，print(num,’能被9整除’)没有被执行，这就是continue的作用，无论后面有多少代码，都不会执行，直接结束本次循环，开始下一次循环。最后的print因为不是在for循环里的，也不受continue的影响，当所有循环结束后，最后执行print打印出统计的个数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">9 能被9整除</span><br><span class="line">18 能被9整除</span><br><span class="line">27 能被9整除</span><br><span class="line">36 能被9整除</span><br><span class="line">45 能被9整除</span><br><span class="line">54 能被9整除</span><br><span class="line">63 能被9整除</span><br><span class="line">72 能被9整除</span><br><span class="line">81 能被9整除</span><br><span class="line">90 能被9整除</span><br><span class="line">99 能被9整除</span><br><span class="line">108 能被9整除</span><br><span class="line">117 能被9整除</span><br><span class="line">126 能被9整除</span><br><span class="line">135 能被9整除</span><br><span class="line">144 能被9整除</span><br><span class="line">153 能被9整除</span><br><span class="line">162 能被9整除</span><br><span class="line">171 能被9整除</span><br><span class="line">180 能被9整除</span><br><span class="line">189 能被9整除</span><br><span class="line">198 能被9整除</span><br><span class="line">500以内能被9整除数总共有 22</span><br></pre></td></tr></table></figure></p>
+<p>在嵌套多层的循环的时候，continue的作用只会在该层的循环有效，也就是说，它不会影响带上一层的循环。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for i in range(5):</span><br><span class="line">    for j in range(5):</span><br><span class="line">        continue</span><br><span class="line">        print(&quot;我是第二层for&quot;)</span><br><span class="line">    print(&quot;我是第一层for&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>这里continue写在第二层的for里，从结果可以看到我是第二层for并没有打印出来，而我是第一层for全部给打印了，这就说明了continue的作用只会在该层的循环有效。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">我是第一层for</span><br><span class="line">我是第一层for</span><br><span class="line">我是第一层for</span><br><span class="line">我是第一层for</span><br><span class="line">我是第一层for</span><br></pre></td></tr></table></figure></p>
+<h2 id="break"><a href="#break" class="headerlink" title="break"></a>break</h2><p>break语句用来终止循环语句，就是当我们没有退出循环条件的时候，想要退出就要用break来退出了，还有就是，运行到某个时候的时候，我不想再循环了，要提前退出，也可以是使用break来退出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">while 1:</span><br><span class="line">    num = int(input(&quot;请输入0~9的某个整数:&quot;))</span><br><span class="line">    if num == 7:</span><br><span class="line">        print(&quot;你猜对了!&quot;)</span><br><span class="line">        break</span><br><span class="line">    print(&quot;你猜错了，重来一遍!&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>这里用死循环，不断让用户输入数字，然后判断输入的数字是否等于某个数字，如果相等就break退出循环，否则就继续输入，这就使break的作用，再没有退出条件的时候，我们可以使用break来退出。这也是被用的非常多的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">请输入0~9的某个整数:2</span><br><span class="line">你猜错了，重来一遍!</span><br><span class="line">请输入0~9的某个整数:5</span><br><span class="line">你猜错了，重来一遍!</span><br><span class="line">请输入0~9的某个整数:7</span><br><span class="line">你猜对了!</span><br></pre></td></tr></table></figure></p>
+<p>在多层嵌套的时候，break会影响到该层，包括比该层更深的层数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for i in range(1,5):</span><br><span class="line">    for j in range(1,5):</span><br><span class="line">        print(&quot;我是第二层for,我是第&#123;&#125;次循环&quot;.format(j))</span><br><span class="line">        break</span><br><span class="line">        for k in fange(1,5):</span><br><span class="line">            print(&quot;我是第三层for,我是第&#123;&#125;次循环&quot;.format(k))</span><br><span class="line">    print(&quot;我是第一层for,我是第&#123;&#125;次循环&quot;.format(i))</span><br></pre></td></tr></table></figure></p>
+<p>这里是一个三层嵌套循环。从结果来分析，可以看到第三层一次都没有被打印出来，也就是说，break语句后面的嵌套循环和代码不会再执行。回来再看看第二次，发现第二次每次都只打印了一次，就结束了循环，也就是说break执行后，就直接退出了该层的循环。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">我是第二层for,我是第1次循环</span><br><span class="line">我是第一层for,我是第1次循环</span><br><span class="line">我是第二层for,我是第1次循环</span><br><span class="line">我是第一层for,我是第2次循环</span><br><span class="line">我是第二层for,我是第1次循环</span><br><span class="line">我是第一层for,我是第3次循环</span><br><span class="line">我是第二层for,我是第1次循环</span><br><span class="line">我是第一层for,我是第4次循环</span><br></pre></td></tr></table></figure></p>
+<h2 id="pass"><a href="#pass" class="headerlink" title="pass"></a>pass</h2><p>最后就说说pass，pass语句并没什么意义，就是一个占位用的，执行了也没什么效果。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for i in range(5):</span><br><span class="line">    pass</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure></p>
+<p>可以看到pass并没有对程序有任何的影响。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">0</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -642,7 +705,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://damow.gitee.io/uncategorized/python3从零开始-12-continue、break和pass/" title="python3从零开始_12:continue、break和pass">https://damow.gitee.io/uncategorized/python3从零开始-12-continue、break和pass/</a>
+    <a href="https://damow.gitee.io/python3/python3从零开始-12-continue、break和pass/" title="python3从零开始_12:continue、break和pass">https://damow.gitee.io/python3/python3从零开始-12-continue、break和pass/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -659,6 +722,16 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/入门/" rel="tag"><i class="fa fa-tag"></i> 入门</a>
+          
+            <a href="/tags/教程/" rel="tag"><i class="fa fa-tag"></i> 教程</a>
+          
+            <a href="/tags/系列/" rel="tag"><i class="fa fa-tag"></i> 系列</a>
+          
+        </div>
       
 
       
@@ -726,8 +799,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -840,6 +922,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#continue"><span class="nav-number">1.</span> <span class="nav-text">continue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#break"><span class="nav-number">2.</span> <span class="nav-text">break</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pass"><span class="nav-number">3.</span> <span class="nav-text">pass</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       

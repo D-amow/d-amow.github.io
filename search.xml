@@ -2,8 +2,16 @@
 <search>
   <entry>
     <title><![CDATA[python3从零开始_12:continue、break和pass]]></title>
-    <url>%2Funcategorized%2Fpython3%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B-12-continue%E3%80%81break%E5%92%8Cpass%2F</url>
-    <content type="text"><![CDATA[]]></content>
+    <url>%2Fpython3%2Fpython3%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B-12-continue%E3%80%81break%E5%92%8Cpass%2F</url>
+    <content type="text"><![CDATA[前面两篇我们学习了条件控制和循环控制，while和for使用的时候还有2种中途控制的关键字，它们可以使while和for中途退出，跳过某个循环次数。 continuecontinue可以使用在循环语句里，可以跳过本次循环，直接进入下一次循环，我们通过案例来说明，我们做一个统计200以内的能被9整除的数，打印出该数和统计的数量12345678lis=[]for num in range(1,200): if num%9==0: lis.append(num) else: continue print(num,&apos;能被9整除&apos;)print(&apos;200以内能被9整除数总共有&apos;,len(lis)) 能被9整除，我们可以用求余的方法来判断，余数为0说明就是能被整除的。这时个简单的for嵌套if，最常见的一种嵌套模式，if判断某数能否被9整除，能就将该数添加进列表里，否则就跳过本次循环。从结果可以看到，当执行了continue后，print(num,’能被9整除’)没有被执行，这就是continue的作用，无论后面有多少代码，都不会执行，直接结束本次循环，开始下一次循环。最后的print因为不是在for循环里的，也不受continue的影响，当所有循环结束后，最后执行print打印出统计的个数。12345678910111213141516171819202122239 能被9整除18 能被9整除27 能被9整除36 能被9整除45 能被9整除54 能被9整除63 能被9整除72 能被9整除81 能被9整除90 能被9整除99 能被9整除108 能被9整除117 能被9整除126 能被9整除135 能被9整除144 能被9整除153 能被9整除162 能被9整除171 能被9整除180 能被9整除189 能被9整除198 能被9整除500以内能被9整除数总共有 22 在嵌套多层的循环的时候，continue的作用只会在该层的循环有效，也就是说，它不会影响带上一层的循环。12345for i in range(5): for j in range(5): continue print(&quot;我是第二层for&quot;) print(&quot;我是第一层for&quot;) 这里continue写在第二层的for里，从结果可以看到我是第二层for并没有打印出来，而我是第一层for全部给打印了，这就说明了continue的作用只会在该层的循环有效。12345我是第一层for我是第一层for我是第一层for我是第一层for我是第一层for breakbreak语句用来终止循环语句，就是当我们没有退出循环条件的时候，想要退出就要用break来退出了，还有就是，运行到某个时候的时候，我不想再循环了，要提前退出，也可以是使用break来退出123456while 1: num = int(input(&quot;请输入0~9的某个整数:&quot;)) if num == 7: print(&quot;你猜对了!&quot;) break print(&quot;你猜错了，重来一遍!&quot;) 这里用死循环，不断让用户输入数字，然后判断输入的数字是否等于某个数字，如果相等就break退出循环，否则就继续输入，这就使break的作用，再没有退出条件的时候，我们可以使用break来退出。这也是被用的非常多的。123456请输入0~9的某个整数:2你猜错了，重来一遍!请输入0~9的某个整数:5你猜错了，重来一遍!请输入0~9的某个整数:7你猜对了! 在多层嵌套的时候，break会影响到该层，包括比该层更深的层数。1234567for i in range(1,5): for j in range(1,5): print(&quot;我是第二层for,我是第&#123;&#125;次循环&quot;.format(j)) break for k in fange(1,5): print(&quot;我是第三层for,我是第&#123;&#125;次循环&quot;.format(k)) print(&quot;我是第一层for,我是第&#123;&#125;次循环&quot;.format(i)) 这里是一个三层嵌套循环。从结果来分析，可以看到第三层一次都没有被打印出来，也就是说，break语句后面的嵌套循环和代码不会再执行。回来再看看第二次，发现第二次每次都只打印了一次，就结束了循环，也就是说break执行后，就直接退出了该层的循环。12345678我是第二层for,我是第1次循环我是第一层for,我是第1次循环我是第二层for,我是第1次循环我是第一层for,我是第2次循环我是第二层for,我是第1次循环我是第一层for,我是第3次循环我是第二层for,我是第1次循环我是第一层for,我是第4次循环 pass最后就说说pass，pass语句并没什么意义，就是一个占位用的，执行了也没什么效果。123for i in range(5): pass print(i) 可以看到pass并没有对程序有任何的影响。1234501234]]></content>
+      <categories>
+        <category>python3</category>
+      </categories>
+      <tags>
+        <tag>入门</tag>
+        <tag>教程</tag>
+        <tag>系列</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[python3从零开始_11:循环控制语句]]></title>
@@ -151,7 +159,7 @@
   <entry>
     <title><![CDATA[python3从零开始]]></title>
     <url>%2Fpython3%2Fpython3%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%2F</url>
-    <content type="text"><![CDATA[在写这篇文章的时候，我一直在想，我作为一名博客新人到底第一篇应该写点什么？因为本人也不是什么大神，我也很害怕自己写的不好，甚至害怕会误人子弟，所以我选择了第一篇就以python3为开端，虽然现在网上有许多的python的教程，也有很多的大神的文章，那么有人就会问了，“既然网上有那么多的python的教程了，为什么我还要写这种教程”，这个问题我也想过，大神的很多文章写的都很详细，而且他们的经验都比较丰富，但是有些教程时间很长了，有些东西已经过时了，或者有更加简单的方法，如果大家都还在看着过旧的教程，难免会造成误导，所以我写了一个python的教程系列，希望想学python的朋友能少走一些弯路。 前言本来打算将python的教程全部写在这篇文章里，后来想了下，如果全部写在一片文章里可能会造成文章的篇幅太大，而且不易分类和快速查找，所以我将这篇文章作为目录。 目录 python3从零开始_01:python简介 python3从零开始_02:python安装 python3从零开始_03:python基本数据类型 python3从零开始_04:python运算符 python3从零开始_05:元组 python3从零开始_06:列表 python3从零开始_07:字典 python3从零开始_08:集合 python3从零开始_09:补充与提高 python3从零开始_10:条件控制语句 python3从零开始_11:循环控制语句]]></content>
+    <content type="text"><![CDATA[在写这篇文章的时候，我一直在想，我作为一名博客新人到底第一篇应该写点什么？因为本人也不是什么大神，我也很害怕自己写的不好，甚至害怕会误人子弟，所以我选择了第一篇就以python3为开端，虽然现在网上有许多的python的教程，也有很多的大神的文章，那么有人就会问了，“既然网上有那么多的python的教程了，为什么我还要写这种教程”，这个问题我也想过，大神的很多文章写的都很详细，而且他们的经验都比较丰富，但是有些教程时间很长了，有些东西已经过时了，或者有更加简单的方法，如果大家都还在看着过旧的教程，难免会造成误导，所以我写了一个python的教程系列，希望想学python的朋友能少走一些弯路。 前言本来打算将python的教程全部写在这篇文章里，后来想了下，如果全部写在一片文章里可能会造成文章的篇幅太大，而且不易分类和快速查找，所以我将这篇文章作为目录。 目录 python3从零开始_01:python简介 python3从零开始_02:python安装 python3从零开始_03:python基本数据类型 python3从零开始_04:python运算符 python3从零开始_05:元组 python3从零开始_06:列表 python3从零开始_07:字典 python3从零开始_08:集合 python3从零开始_09:补充与提高 python3从零开始_10:条件控制语句 python3从零开始_11:循环控制语句 python3从零开始_12:continue、break和pass]]></content>
       <categories>
         <category>python3</category>
       </categories>
